@@ -8,6 +8,9 @@ set :database, "sqlite3:123.db"
 class Client < ActiveRecord::Base
 end
 
+class Barber < ActiveRecord::Base
+end
+
 configure do
   enable :sessions
 end
