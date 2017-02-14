@@ -50,7 +50,7 @@
 
 			<div>
 			      <%if @error then %>
-			          <div class="alert alert-error"><%=@error%></div>
+			          <div class="alert alert-danger"><%=@error%></div>
 			      <% end %>
 			      <%= yield %>
 			</div>
@@ -63,4 +63,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
   </body>
+  <link rel="stylesheet" type="text/css" href="/jquery.datetimepicker.css"/ >
+<script src="/jquery.js"></script>
+<script src="/build/jquery.datetimepicker.full.min.js"></script>
 </html>
