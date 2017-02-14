@@ -34,7 +34,7 @@ before '/secure/*' do
 end
 
 get '/' do
-	@barbers = Barber.order "created_at DESC"
+	
   erb :index
 end
 
@@ -49,6 +49,15 @@ post '/visit' do
 	@new_user_phone = params[:new_user_phone]
 	@new_user_datetime = params[:new_user_datetime]
 	@barber_for_user = params[:barber]
+	
+	new_contact = Client.new
+	new_contact.name = @new_user_name
+	new_contact.phone = @new_user_phone
+	new_contact.datestamp = @new_user_datetime
+	new_contact.barber = @barber_for_user
+	new_contact.save
+	
+	erb "#{@new_user_name}, Вы записаны на #{@new_user_datetime} к специалисту #{@barber_for_user}"
 	
 end
 
