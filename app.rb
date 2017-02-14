@@ -21,6 +21,10 @@ helpers do
   end
 end
 
+before do
+	@barbers_list = Barber.all
+end
+
 before '/secure/*' do
   unless session[:identity]
     session[:previous_url] = request.path
@@ -32,6 +36,20 @@ end
 get '/' do
 	@barbers = Barber.order "created_at DESC"
   erb :index
+end
+
+get '/visit' do
+	
+	erb :visit
+end
+
+post '/visit' do	
+	
+	@new_user_name = params[:new_user_name]
+	@new_user_phone = params[:new_user_phone]
+	@new_user_datetime = params[:new_user_datetime]
+	@barber_for_user = params[:barber]
+	
 end
 
 get '/login/form' do
