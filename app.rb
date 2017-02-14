@@ -50,14 +50,32 @@ post '/visit' do
 	@new_user_datetime = params[:new_user_datetime]
 	@barber_for_user = params[:barber]
 	
+	#======код для обработки пустых строк при записи.
+		#если посетитель нажимает сабмит при незаполненных полях формы на /visit,		
+		hh ={   
+				:new_user_name => 'Введите Ваше имя',
+				:new_user_phone => 'Введите Ваш номер телефона',
+				:new_user_datetime => 'Введите дату и время посещения',
+				:barber => 'Выберите специалиста'
+			}
+		#то этот код проверяет, какие строки незаполнены 
+		#и выдает ошибку, равную значению для каждого поля.
+		hh.each do |key, value|
+			if params[key] =="" 
+				@error = hh[key]
+				return erb :visit
+			end
+		end
+	#========конец кода обработки ошибки заполнения полей формы записи.
+	
 	new_contact = Client.new
-	new_contact.name = @new_user_name
-	new_contact.phone = @new_user_phone
-	new_contact.datestamp = @new_user_datetime
-	new_contact.barber = @barber_for_user
+	new_contact.name = params[:new_user_name]
+	new_contact.phone = params[:new_user_phone]
+	new_contact.datestamp =params[:new_user_datetime]
+	new_contact.barber = params[:barber]
 	new_contact.save
 	
-	erb "#{@new_user_name}, Вы записаны на #{@new_user_datetime} к специалисту #{@barber_for_user}"
+	erb "#{params[:new_user_name]}, Вы записаны на #{new_contact.datestamp} к специалисту #{new_contact.barber}"
 	
 end
 
