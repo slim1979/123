@@ -17,8 +17,15 @@ GEM
     bond (0.5.1)
     concurrent-ruby (1.0.4)
     i18n (0.8.0)
+    mail (2.6.4)
+      mime-types (>= 1.16, < 4)
+    mime-types (3.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2016.0521)
     minitest (5.10.1)
     multi_json (1.12.1)
+    pony (1.11)
+      mail (>= 2.0)
     rack (1.6.5)
     rack-protection (1.5.3)
       rack
@@ -46,6 +53,7 @@ GEM
       rack-test
       sinatra (~> 1.4.0)
       tilt (>= 1.3, < 3)
+    sqlite3 (1.3.13-x64-mingw32)
     sqlite3 (1.3.13-x86-mingw32)
     thread_safe (0.3.5)
     tilt (2.0.6)
@@ -58,10 +66,12 @@ GEM
       thread_safe (~> 0.1)
 
 PLATFORMS
+  x64-mingw32
   x86-mingw32
 
 DEPENDENCIES
   activerecord
+  pony
   sinatra
   sinatra-activerecord
   sinatra-contrib
@@ -69,4 +79,4 @@ DEPENDENCIES
   tux
 
 BUNDLED WITH
-   1.13.7
+   1.14.2
