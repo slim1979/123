@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<h3>Здесь Вы можете оставить нам свой отзыв</h3>
+
+<form action="/contacts" method="POST" role="form">
+	
+  
+	<label>Ваше имя:</label>
+	<input type="text" class="form-control" name="opinion_client_name" placeholder="Иван Иванович"><br />
+	
+	<label>Ваш email:</label>
+	<input type="email" class="form-control" name="opinion_client_email" placeholder="ivan.i@example.ru"><br />
+
+
+	<label>Ваш отзыв:</label>
+	<textarea class="form-control" rows="6" name="opinion_client_text" placeholder="Оставьте здесь Ваш отзыв"></textarea><br />
+	
+	<label>
+          <input type="checkbox" name="opinion_client_email_copy_checkbox"> Направить себе копию отзыва
+	</label>
+	<br /><br />
+
+	<button type="submit" class="btn btn-primary">Отправить отзыв</button>
+
+  
+</form>
