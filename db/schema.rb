@@ -29,9 +29,11 @@ ActiveRecord::Schema.define(version: 20170215191326) do
   end
 
   create_table "opinions", force: :cascade do |t|
-    t.text "client_name"
-    t.text "client_email"
-    t.text "opinion_text"
+    t.text     "client_name"
+    t.text     "client_email"
+    t.text     "opinion_text"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
 end
