@@ -26,6 +26,7 @@ end
 
 before do
 	@barbers_list = Barber.all
+	@opinions_list = Opinion.all #Opinion.order "created_at DESC" 
 end
 
 before '/secure/*' do
@@ -42,7 +43,8 @@ get '/' do
 end
 
 get '/about' do
-	erb "We are good!"
+	
+	erb :about
 end
 
 get '/visit' do
