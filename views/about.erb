@@ -1,0 +1,23 @@
+<h3>Отзывы о нас</h3>
+<% @opinions_list.each do |opinion| %>
+	<div>
+
+		<p style="font-weight:bold">
+			<span class="glyphicon glyphicon-user" aria-hidden="true"></span> 
+			<%= opinion.client_name %> 
+			<a href="mailto:#"><%= opinion.client_email %> </a>
+		</p>
+		
+		<p>
+			<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 
+			<%= opinion.opinion_text %>
+		</p>
+		
+		<p style="font-size: 75%; color: grey">
+			<span class="glyphicon glyphicon-time" aria-hidden="true"></span> 
+			Добавлено: 	<%= opinion.created_at %>
+		</p>
+		
+		<hr/>
+	</div>
+<% end %>
