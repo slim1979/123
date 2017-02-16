@@ -4,9 +4,9 @@
  <meta charset="utf-8">
  
  <script type="text/javascript">
- 
-	$(function() {
 	
+	$(function() {
+		$.datetimepicker.setLocale('ru');
 		jQuery('#datetimepicker').datetimepicker();
 		
 		
@@ -19,13 +19,13 @@
 	<h4>Чтобы записаться на стрижку, введите Ваше имя, телефон для связи и желаемое время визита</h4>
 	<form action="/visit" class="aaa" method="POST" role="form">
 		<label>Введите Ваше имя:</label>	
-		<input type="text" class="form-control" name ="new_user_name" placeholder="Введите Ваше имя" value=<%= params[:new_user_name] %>><br/>
+		<input type="text" class="form-control" name="client[name]" placeholder="Введите Ваше имя" value="<%= @new_contact.name%>"><br/>
 		<label>Введите номер телефона:</label>	
-		<input type="text" class="form-control" name ="new_user_phone" placeholder="Введите номер телефона" value=<%= params[:new_user_phone] %>><br/>
+		<input type="text" class="form-control" name="client[phone]" placeholder="Введите номер телефона" value=<%= @new_contact.phone %>><br/>
 		<label>Выберите дату и время:</label>	
-		<input type="text" id="datetimepicker" class="form-control" name ="new_user_datetime" placeholder="Выберите дату и время" value=<%= params[:new_user_datetime] %>><br/>
+		<input type="text" id="datetimepicker" class="form-control" name ="client[datestamp]" placeholder="Выберите дату и время" value="<%= @new_contact.datestamp %>"><br/>
 		<label>Выберите специалиста:</label>		
-		<select name="barber" class="form-control" >
+		<select name="client[barber]" class="form-control" >
 		
 		<% @barbers_list.each do |barber_from_db| %>
 			
