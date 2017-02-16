@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<h4>Страница парикмахера <strong><%= @barber.name %></strong></h4>
+
+<table class="table">
+	
+	<thead>
+		<th>
+			Имя клиента
+		</th>
+		<th>
+			Дата записи
+		</th>
+		<th>
+			Телефон
+		</th>
+	</thead>
+	<tbody>
+	<% @clients.each do |client|%>	
+		<tr>
+			<td>
+				<%= client.name %>
+			</td>
+			<td>
+				<%= client.datestamp %>
+			</td>
+			<td>
+				<%= client.phone %>
+			</td>
+		</tr>
+	<%end%>
+	</tbody>
+
+</table>
