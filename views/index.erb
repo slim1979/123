@@ -1,2 +1,7 @@
+<!DOCTYPE html>
 <h2>Список парикмахеров</h2>
-
+<% @barbers_list.each do |barber| %>
+<p>
+	<a href="/barbers/<%=barber.id%>"><%= barber.name %></a>
+</p>
+<%end %>
