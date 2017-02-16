@@ -6,6 +6,10 @@ require 'sinatra/activerecord'
 set :database, "sqlite3:123.db"
 
 class Client < ActiveRecord::Base
+	validates :name, presence: true
+	validates :phone, presence: true
+	validates :datestamp, presence: true
+	validates :barber, presence: true
 end
 
 class Barber < ActiveRecord::Base
@@ -26,7 +30,7 @@ end
 
 before do
 	@barbers_list = Barber.all
-	@opinions_list = Opinion.all #Opinion.order "created_at DESC" 
+	@opinions_list = Opinion.all #Opinion.order "created_at DESC" для вывода в обратном порядке, т.е. последние наверху
 end
 
 before '/secure/*' do
@@ -37,8 +41,7 @@ before '/secure/*' do
   end
 end
 
-get '/' do
-	
+get '/' do	
   erb :index
 end
 
@@ -48,44 +51,30 @@ get '/about' do
 end
 
 get '/visit' do
-	
+	@new_contact = Client.new
 	erb :visit
 end
 
 post '/visit' do	
+		
+	@new_contact = Client.new params[:client]	
 	
-	
-	@barber_for_user = params[:barber]
-	
-	#======код для обработки пустых строк при записи.
-		#если посетитель нажимает сабмит при незаполненных полях формы на /visit,		
-		hh ={   
-				:new_user_name => 'Введите Ваше имя',
-				:new_user_phone => 'Введите Ваш номер телефона',
-				:new_user_datetime => 'Введите дату и время посещения',
-				:barber => 'Выберите специалиста'
-			}
-		#то этот код проверяет, какие строки незаполнены 
-		#и выдает ошибку, равную значению для каждого поля.
-		hh.each do |key, value|
-			if params[key] =="" 
-				@error = hh[key]
-				return erb :visit
-			
-			end
-		end
-	#========конец кода обработки ошибки заполнения полей формы записи.
-	
-	new_contact = Client.new
-	new_contact.name = params[:new_user_name]
-	new_contact.phone = params[:new_user_phone]
-	new_contact.datestamp =params[:new_user_datetime]
-	new_contact.barber = params[:barber]
-	new_contact.save
-	
-	erb "#{params[:new_user_name]}, Вы записаны на #{new_contact.datestamp} к специалисту #{new_contact.barber}"
+	if @new_contact.save
+		erb "#{@new_contact.name}, Вы записаны на #{@new_contact.datestamp} к специалисту #{@new_contact.barber}"
+	else
+		@error = @new_contact.errors.full_messages.second
+		erb :visit
+	end
 	
 end
+get '/barbers/:id' do
+	
+	@barber = Barber.find params[:id]	
+	@clients = Client.where("barber = ?", [@barber.name])
+	erb :barber
+end
+
+
 #здесь происходит переход к виду contacts при нажатии на ссылку Контакты на главной
 get '/contacts' do
 	erb :contacts
