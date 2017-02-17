@@ -21,7 +21,8 @@ ActiveRecord::Schema.define(version: 20170215191326) do
   create_table "clients", force: :cascade do |t|
     t.text     "name"
     t.text     "phone"
-    t.text     "datestamp"
+    t.text     "date"
+    t.text     "time"
     t.text     "barber"
     t.text     "color"
     t.datetime "created_at", null: false
