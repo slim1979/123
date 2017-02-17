@@ -8,10 +8,10 @@
 $(function() {
 
 	$.datetimepicker.setLocale('ru');
-	jQuery('#datetimepicker7').datetimepicker({
+	jQuery('#datetimepicker').datetimepicker({
 		timepicker:false,
-		formatDate:'d/m/Y',
-		minDate:'-1970/01/01',
+		format:'d/m/Y',
+		minDate:'0'
 	});
 	jQuery('#datetimepicker2').datetimepicker({
 		datepicker:false,
@@ -34,7 +34,7 @@ $(function() {
 		<input type="text" class="form-control" name="client[phone]" placeholder="Введите номер телефона" value=<%= @new_contact.phone %>><br/>
 		
 		<label>Выберите дату и время:</label>	
-		<input type="text" id="datetimepicker7" class="form-control" name ="client[date]" placeholder="Выберите дату" value="<%= @new_contact.date %>"><br/>
+		<input type="text" id="datetimepicker" class="form-control" name ="client[date]" placeholder="Выберите дату" value="<%= @new_contact.date %>"><br/>
 		<input type="text" id="datetimepicker2" class="form-control" name ="client[time]" placeholder="Выберите время" value="<%= @new_contact.time %>"><br/>
 		
 		<label>Выберите специалиста:</label>		
