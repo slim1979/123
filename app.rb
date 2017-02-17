@@ -8,7 +8,8 @@ set :database, "sqlite3:123.db"
 class Client < ActiveRecord::Base
 	validates :name, presence: true
 	validates :phone, presence: true
-	validates :datestamp, presence: true
+	validates :date, presence: true
+	validates :time, presence: true
 	validates :barber, presence: true
 end
 
@@ -52,7 +53,7 @@ end
 
 get '/visit' do
 	@new_contact = Client.new
-	erb :visit
+	erb :visit2
 end
 
 post '/visit' do	
@@ -60,10 +61,10 @@ post '/visit' do
 	@new_contact = Client.new params[:client]	
 	
 	if @new_contact.save
-		erb "#{@new_contact.name}, Вы записаны на #{@new_contact.datestamp} к специалисту #{@new_contact.barber}"
+		erb "#{@new_contact.name}, Вы записаны на #{@new_contact.date} - #{@new_contact.time} к специалисту #{@new_contact.barber}"
 	else
-		@error = @new_contact.errors.full_messages.second
-		erb :visit
+		@error = @new_contact.errors.full_messages.first
+		erb :visit2
 	end
 	
 end
