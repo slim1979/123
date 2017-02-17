@@ -2,6 +2,7 @@
 <h2>Список парикмахеров</h2>
 <% @barbers_list.each do |barber| %>
 <p>
-	<a href="/barbers/<%=barber.id%>"><%= barber.name %></a>
+	<% clients = Client.where("barber = ?", [barber.name]) %>
+	<a href="/barbers/<%=barber.id%>"><%= barber.name%> (<%= clients.length%>)</a>
 </p>
 <%end %>
